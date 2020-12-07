@@ -2,7 +2,6 @@
 """--- Advent of Code Day 6: Custom Customs ---"""
 
 from typing import List
-from functools import reduce
 
 FILENAME = "day_06.txt"
 
