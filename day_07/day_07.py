@@ -13,28 +13,25 @@ bags = defaultdict(list)
 
 
 def parse_input(inp: List[str]) -> None:
-    regex = r"((\d)?([a-z ]*?)bag(s)?)"
+    outer = r"^([a-z ]*?) bag"
+    inner = r"(\d) ([a-z ]*?) bags?[.,]"
     for line in inp:
-        line = line.replace(' contain', '').replace(',', '')
-        matches = re.findall(regex, line)
-        current = matches[0][2].strip()
-        for match in matches[1:]:
-            num = int(match[1]) if match[1] else 0
-            bags[current].append((num, match[2].strip()))
+        outer_bag = re.findall(outer, line)[0]
+        inner_bags = re.findall(inner, line)
+        for amount, bag in inner_bags:
+            bags[outer_bag].append((int(amount), bag))
 
 
 @functools.lru_cache(64)
 def recursive_find(colour: str) -> bool:
     for _, bag in bags[colour]:
-        if bag == TARGET or recursive_find(bag):
+        if (bag == TARGET) or (recursive_find(bag)):
             return True
     return False
 
 
 @functools.lru_cache(64)
 def recursive_add(colour: str) -> int:
-    if colour == "no other":
-        return 0
     total = 0
     for amount, bag in bags[colour]:
         total += amount
