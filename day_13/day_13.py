@@ -29,10 +29,10 @@ def part2(inp: List[str]) -> int:
     n = timestamp
     for bus_id, offset in schedule[1:]:
         while True:
-            timestamp += n
             if (timestamp + offset) % bus_id == 0:
                 n *= bus_id
                 break
+            timestamp += n
     return timestamp
 
 
