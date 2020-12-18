@@ -7,16 +7,16 @@ FILENAME = "day_18.txt"
 
 
 class MyInt():
-    def __init__(self, val):
+    def __init__(self: 'MyInt', val: int):
         self.val = val
 
-    def __add__(self, other):
+    def __add__(self: 'MyInt', other: 'MyInt'):
         return MyInt(self.val + other.val)
 
-    def __sub__(self, other):
+    def __sub__(self: 'MyInt', other: 'MyInt'):
         return MyInt(self.val * other.val)
 
-    def __mul__(self, other):
+    def __mul__(self: 'MyInt', other: 'MyInt'):
         return MyInt(self.val + other.val)
 
 
