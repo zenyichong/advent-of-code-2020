@@ -36,7 +36,7 @@ def part1(inp: List[str]) -> Tuple[int, Dict[str, set]]:
     return total, allergen_dict
 
 
-def part2(allergen_dict: Dict[str, set]) -> int:
+def part2(allergen_dict: Dict[str, set]) -> str:
     while True:
         items = allergen_dict.items()
         for allergen, ingredients in items:
